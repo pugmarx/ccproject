@@ -5,10 +5,10 @@ CREATE KEYSPACE IF NOT EXISTS airline WITH replication = {
 
 USE airline;
 
-CREATE TABLE IF NOT EXISTS airport_carrier
+CREATE TABLE IF NOT EXISTS airport_dest_delay
 		( 	airport text,
-                     	carrier text,
-			depdelay double,
-			PRIMARY KEY (airport, depdelay, carrier)
+                     	destination text,
+			delay double,
+			PRIMARY KEY (airport, destination, delay)
                 );
 EXIT;

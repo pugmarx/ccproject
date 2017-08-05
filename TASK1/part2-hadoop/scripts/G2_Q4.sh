@@ -7,23 +7,23 @@ base=`dirname $0`/..
 
 . ./optparams.sh
 
-if [ $# -eq 1 ] 
+if [ $# -eq 2 ] 
 then
-    echo "Input: "$1
+    echo "Input: "$1,$2
 else
-    echo "Error!! Format is: $f <Airport_Code>"
+    echo "Error!! Format is: $f <Origin_Code> <Dest_Code>"
     exit 1
 fi
 
 echo "............................................................................................... "
-echo "          2.1 Airport:(Airline, Average delay in minutes)"
+echo "          2.4 X -> Y: Average delay in minutes"
 echo "............................................................................................... "
 
 echo "............................................................................................... "
 echo "          1/4. Execute Hadoop job"
 echo "............................................................................................... "
 
-hadoop jar ${base}/jars/${subtask}.jar airline/stage ${subtask} $1 $HDP_OPTS
+hadoop jar ${base}/jars/${subtask}.jar airline/stage ${subtask} $1 $2 $HDP_OPTS
 
 echo "............................................................................................... "
 echo "          2/4. Raw Output"
@@ -44,7 +44,7 @@ echo "..........................................................................
 echo "          4/4. Output results from Cassandra"
 echo "............................................................................................... "
 
-cqlsh -e "SELECT carrier,depdelay FROM airline.airport_carrier WHERE airport='${1}'";
+cqlsh -e "SELECT * FROM airline.airport_dest_delay WHERE airport='${1}' and destination='${2}'";
 
 echo "............................................................................................... "
 echo "          Done"

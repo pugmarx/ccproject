@@ -16,7 +16,7 @@ else
 fi
 
 echo "............................................................................................... "
-echo "          2.1 Airport:(Airline, Average delay in minutes)"
+echo "          2.2 Airport:(Airport, Average delay in minutes)"
 echo "............................................................................................... "
 
 echo "............................................................................................... "
@@ -44,7 +44,7 @@ echo "..........................................................................
 echo "          4/4. Output results from Cassandra"
 echo "............................................................................................... "
 
-cqlsh -e "SELECT carrier,depdelay FROM airline.airport_carrier WHERE airport='${1}'";
+cqlsh -e "SELECT destination,depdelay FROM airline.airport_destination WHERE airport='${1}'";
 
 echo "............................................................................................... "
 echo "          Done"
