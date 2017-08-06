@@ -1,7 +1,9 @@
 #!/bin/sh
 
 f=`basename $0`
+subtask=${f%.sh}
 s=${f%.sh}
+base=`dirname $0`/..
 
 . ./optparams.sh
 
@@ -19,7 +21,9 @@ echo "..........................................................................
 echo "		2/2. Output results"
 echo "............................................................................................... "
 
-hadoop fs -cat $s/*
+mkdir -p ${base}/results
+hadoop fs -getmerge ${subtask} ${base}/results/${subtask}.csv
+cat ${base}/results/${subtask}.csv
 
 echo "............................................................................................... "
 echo "		Done"
