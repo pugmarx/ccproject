@@ -25,10 +25,15 @@ echo "          1/2. Execute Spark job"
 echo "............................................................................................... "
 #hadoop fs -rm -r output/${subtask}
 
-spark-submit --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.2.0,datastax:spark-cassandra-connector:2.0.5-s_2.11 --master spark://ip-172-31-71-230.ec2.internal:7077  --class org.pgmx.spark.g1.G1Q2 original-spark-examples_2.11-2.2.0.jar ip-172-31-76-34.ec2.internal:9092,ip-172-31-76-34.ec2.internal:9093,ip-172-31-76-34.ec2.internal:9094 $1 40 10000 Y ip-172-31-71-230.ec2.internal
+spark-submit --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.2.0,datastax:spark-cassandra-connector:2.0.5-s_2.11 --master spark://ip-172-31-71-230.ec2.internal:7077  --class org.pgmx.spark.g1.G1Q2 jar/original-spark-examples_2.11-2.2.0.jar ip-172-31-76-34.ec2.internal:9092,ip-172-31-76-34.ec2.internal:9093,ip-172-31-76-34.ec2.internal:9094 $1 40 10000 Y ip-172-31-71-230.ec2.internal
 
-hadoop fs -cat output/G1Q2/*
+echo "............................................................................................... "
+echo "          2/2. Raw output"
+echo "............................................................................................... "
 
+#hadoop fs -cat output/G1Q2/*
+hadoop fs -getmerge output/G1Q2 .g1q2.tmp
+head -10 .g1q2.tmp
 echo "............................................................................................... "
 echo "          Done"
 echo "............................................................................................... "

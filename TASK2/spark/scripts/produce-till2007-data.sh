@@ -22,5 +22,5 @@ for i in {1988..2007}
 do
 	echo ":::: Processing directory $i ::::"	
 	#hdfs dfs -rm -r airline/stage/$i
-	hadoop fs -cat airline/stage1/$i | kafka-console-producer.sh --broker-list ip-172-31-76-34.ec2.internal:9092,ip-172-31-76-34.ec2.internal:9093,ip-172-31-76-34.ec2.internal:9094 --topic $1 > progress.out
+	hadoop fs -cat airline/stage1/$i/* | kafka-console-producer.sh --broker-list ip-172-31-76-34.ec2.internal:9092,ip-172-31-76-34.ec2.internal:9093,ip-172-31-76-34.ec2.internal:9094 --topic $1 > progress.out
 done

@@ -25,7 +25,7 @@ echo "          1/3. Execute Spark job"
 echo "............................................................................................... "
 #hadoop fs -rm -r output/${subtask}
 
-spark-submit --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.2.0,datastax:spark-cassandra-connector:2.0.5-s_2.11 --master spark://ip-172-31-71-230.ec2.internal:7077  --class org.pgmx.spark.g2.G2Q4 original-spark-examples_2.11-2.2.0.jar $2 $3 ip-172-31-76-34.ec2.internal:9092,ip-172-31-76-34.ec2.internal:9093,ip-172-31-76-34.ec2.internal:9094 $1 40 10000 Y ip-172-31-71-230.ec2.internal
+spark-submit --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.2.0,datastax:spark-cassandra-connector:2.0.5-s_2.11 --master spark://ip-172-31-71-230.ec2.internal:7077  --class org.pgmx.spark.g2.G2Q4 jar/original-spark-examples_2.11-2.2.0.jar $2 $3 ip-172-31-76-34.ec2.internal:9092,ip-172-31-76-34.ec2.internal:9093,ip-172-31-76-34.ec2.internal:9094 $1 40 10000 Y ip-172-31-71-230.ec2.internal
 
 echo "............................................................................................... "
 echo "          2/3. Raw output"
